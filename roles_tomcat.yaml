@@ -1,0 +1,5 @@
+---
+- name: installing tomcat playbook
+  hosts: all
+  roles:
+    - tomcat

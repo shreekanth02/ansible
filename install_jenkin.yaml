@@ -1,0 +1,24 @@
+---
+- name: Jenkins installation on slave server artifact
+  hosts: server1
+  remote_user: root
+  tasks:
+    - name: Update the System Packages
+      apt:
+        upgrade: yes
+        update_cache: true
+    - name: Java installation
+      apt:
+        name: default-jdk
+        state: latest
+    - name: add the repository key to the system
+      apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
+    - name: configure repository
+      apt_repository: repo='deb https://pkg.jenkins.io/debian-stable binary/' state=present
+    - name: running apt update
+      apt: 
+        name: jenkins
+    - name: status check
+      service: 
+        name: jenkins
+~

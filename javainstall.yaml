@@ -1,0 +1,10 @@
+---
+- name: install java
+  hosts: all
+  become: true
+
+  tasks:
+    - name: installing java
+      apt:
+        name: "*"
+        state: latest
